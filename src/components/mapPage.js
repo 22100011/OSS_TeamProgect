@@ -64,15 +64,15 @@ const MapComponent = () => {
                     // GHI 점수에 따른 아이콘 설정
                     let iconUrl = "";
                     if (item.ghi >= 0.0 && item.ghi <= 9.9) {
-                        iconUrl = "/low.png"; // GHI 낮음
+                        iconUrl = "/icon/low.png"; // GHI 낮음
                     } else if (item.ghi >= 10.0 && item.ghi <= 19.9) {
-                        iconUrl = "/moderate.png"; // GHI 보통
+                        iconUrl = "/icon/moderate.png"; // GHI 보통
                     } else if (item.ghi >= 20.0 && item.ghi <= 34.9) {
-                        iconUrl = "/serious.png"; // GHI 심각
+                        iconUrl = "/icon/serious.png"; // GHI 심각
                     } else if (item.ghi >= 35.0 && item.ghi <= 49.9) {
-                        iconUrl = "/alarming.png"; // GHI 매우 심각
+                        iconUrl = "/icon/alarming.png"; // GHI 매우 심각
                     } else if (item.ghi >= 50.0) {
-                        iconUrl = "/extremely-alarming.png"; // GHI 극도로 심각
+                        iconUrl = "/icon/extremely-alarming.png"; // GHI 극도로 심각
                     }
 
                     // 마커 컴포넌트 생성
