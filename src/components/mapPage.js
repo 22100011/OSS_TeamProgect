@@ -58,15 +58,37 @@ const MapComponent = () => {
                 options={mapOptions}
                 onLoad={(map) => (mapRef.current = map)}
             >
-                {filteredData.filter((item) => item.year === 2023) // year가 2023인 데이터만 필터링
-                .map((item) => (
-                <MarkerF
-                    key={item.id}
-                    position={{ lat: parseFloat(item.latitude), lng: parseFloat(item.longitude) }}
-                    icon={"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"}
-                    onClick={() => alert(`Marker Details:\n${JSON.stringify(item, null, 2)}`)} // 모든 속성 출력
-                />
-                ))}
+                {filteredData
+                .filter((item) => item.year === 2023) // year가 2023인 데이터만 필터링
+                .map((item) => {
+                    // GHI 점수에 따른 아이콘 설정
+                    let iconUrl = "";
+                    if (item.ghi >= 0.0 && item.ghi <= 9.9) {
+                        iconUrl = "/low.png"; // GHI 낮음
+                    } else if (item.ghi >= 10.0 && item.ghi <= 19.9) {
+                        iconUrl = "/moderate.png"; // GHI 보통
+                    } else if (item.ghi >= 20.0 && item.ghi <= 34.9) {
+                        iconUrl = "/serious.png"; // GHI 심각
+                    } else if (item.ghi >= 35.0 && item.ghi <= 49.9) {
+                        iconUrl = "/alarming.png"; // GHI 매우 심각
+                    } else if (item.ghi >= 50.0) {
+                        iconUrl = "/extremely-alarming.png"; // GHI 극도로 심각
+                    }
+
+                    // 마커 컴포넌트 생성
+                    return (
+                        <MarkerF
+                            key={item.id}
+                            position={{ lat: parseFloat(item.latitude), lng: parseFloat(item.longitude) }}
+                            icon={{
+                                url: iconUrl,
+                                scaledSize: new window.google.maps.Size(32, 32), // 크기 설정 (px 단위)
+                            }}
+                            onClick={() => alert(`Marker Details:\n${JSON.stringify(item, null, 2)}`)} // 모든 속성 출력
+                        />
+                    );
+                })}
+
             </GoogleMap>
 
             <button onClick={moveToBusan} style={{ marginTop: "10px" }}>
