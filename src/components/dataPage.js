@@ -17,7 +17,7 @@ const App = () => {
   };
 
   // 특정 연도로 필터링
-  const filterByYear = () => { //year에 아무것도 적지 않았으면 그냥 다 출력해
+  const filterByYear = () => { // year에 아무것도 적지 않았으면 그냥 다 출력
     let filter = [];
     if (year === '') {
       filter = [...data];
