@@ -13,6 +13,9 @@ const MapComponent = () => {
     const [filteredData, setFilteredData] = useState([]);
     const mapRef = useRef(null);
 
+    const [selectedMarker, setSelectedMarker] = useState(null); // 선택된 마커 데이터 저장
+    const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리
+
     const mapOptions = {
         //minZoom: 3,
         maxZoom: 10,
@@ -49,6 +52,11 @@ const MapComponent = () => {
         fetchData(); // 컴포넌트 로드 시 데이터 가져오기
     }, []);
 
+    const closeModal = () => {
+        setSelectedMarker(null);
+        setIsModalOpen(false);
+    };
+
     return (
         <LoadScript googleMapsApiKey={API_KEY}>
             <GoogleMap
@@ -84,10 +92,30 @@ const MapComponent = () => {
                                 url: iconUrl,
                                 scaledSize: new window.google.maps.Size(32, 32), // 크기 설정 (px 단위)
                             }}
-                            onClick={() => alert(`Marker Details:\n${JSON.stringify(item, null, 2)}`)} // 모든 속성 출력
+                            onClick={() => {
+                                setSelectedMarker(item); // 선택된 데이터 저장
+                                setIsModalOpen(true); // 모달 열기
+                            }}
                         />
                     );
                 })}
+
+                     {/* 모달 창 */}
+                {isModalOpen && selectedMarker && (
+                    <div style={modalStyle}>
+                        <div style={modalContentStyle}>
+                            <h2>Marker Details</h2>
+                            <p><strong>Country:</strong> {selectedMarker.country}</p>
+                            <p><strong>Year:</strong> {selectedMarker.year}</p>
+                            <p><strong>GHI:</strong> {selectedMarker.ghi}</p>
+                            <p><strong>Stunting:</strong> {selectedMarker.child_stunting}%</p>
+                            <p><strong>Wasting:</strong> {selectedMarker.child_wasting}%</p>
+                            <p><strong>Undernourishment:</strong> {selectedMarker.undernourishment}%</p>
+                            <p><strong>Mortality:</strong> {selectedMarker.child_mortality}%</p>
+                            <button onClick={closeModal} style={buttonStyle}>Close</button>
+                        </div>
+                    </div>
+                )}
 
             </GoogleMap>
 
@@ -99,3 +127,37 @@ const MapComponent = () => {
 };
 
 export default MapComponent;
+
+// 모달 스타일
+const modalStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1000,
+};
+
+const modalContentStyle = {
+    backgroundColor: "white",
+    padding: "20px",
+    borderRadius: "8px",
+    width: "400px",
+    textAlign: "center",
+    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+};
+
+const buttonStyle = {
+    marginTop: "15px",
+    padding: "10px 20px",
+    backgroundColor: "#007BFF",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+};
+
