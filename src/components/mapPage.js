@@ -89,11 +89,6 @@ const MapComponent = () => {
         setIsModalOpen(true);
     };
 
-    const openHomeModal2 = () => {
-        setIsGraphModalOpen(false);
-        setIsModalOpen(true);
-    };
-
     const openGraphModal = () => {
         setIsDetailsModalOpen(false);
         setIsGraphModalOpen(true);
