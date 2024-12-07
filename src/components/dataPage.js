@@ -17,7 +17,7 @@ const App = () => {
   };
 
   // 특정 연도로 필터링
-  const filterByYear = () => { // year에 아무것도 적지 않았으면 그냥 다 출력
+  const filterByYear = () => { //year에 아무것도 적지 않았으면 그냥 다 출력해
     let filter = [];
     if (year === '') {
       filter = [...data];
@@ -54,7 +54,7 @@ const App = () => {
         <option value={2023}>2023</option>
         <option value={2019}>2019</option>
         <option value={2015}>2015</option>
-        <option value={2012}>2012</option>
+        <option value={2011}>2011</option>
       </select>
 
       <button onClick={filterByYear} style={{ padding: '5px 10px', marginRight: '10px' }}>
