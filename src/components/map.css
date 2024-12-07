@@ -12,35 +12,47 @@
     z-index: 1000;
 }
 
-/* 모달 내용 스타일 */
+/* 기본 모달 내용 스타일 */
 .modal-content-home {
-    width: 300px; /* 화면의 95% */
-    max-width: none; /* 최대 너비 제한 제거 */
-    margin: 0 auto;
-    background-color: rgb(221, 226, 216);
+    width: 300px; /* 모달 너비 */
+    max-width: 90%; /* 최대 너비 제한 */
+    background-color: #dde2d8;
     border-radius: 8px;
     padding: 20px;
-    max-height: 90vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    text-align: center;
+    max-height: 90vh;
 }
 
+/* 상세 모달 내용 스타일 */
 .modal-content-detail {
-    width: 40%; /* 화면의 95% */
-    max-width: none; /* 최대 너비 제한 제거 */
-    margin: 0 auto;
-    background-color: rgb(221, 226, 216);
+    width: 40%; /* 상세 모달 너비 */
+    max-width: 90%; /* 최대 너비 제한 */
+    background-color: #dde2d8;
     border-radius: 8px;
     padding: 20px;
-    max-height: 90vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    max-height: 90vh;
+}
+
+/* 그래프 모달 내용 스타일 */
+.modal-content-graph {
+    width: 60%; /* 그래프 모달 너비 */
+    max-width: 800px;
+    background-color: #dde2d8;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
 /* 버튼 스타일 */
 .modal-button {
-    background-color: #007bff; /* 파란색 버튼 */
-    color: #ffffff; /* 흰색 텍스트 */
+    background-color: #007bff; /* 버튼 배경색 */
+    color: #ffffff; /* 텍스트 색상 */
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -59,6 +71,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 14px;
 }
 
 table th,
@@ -80,3 +93,18 @@ table tr:nth-child(even) {
 table tr:hover {
     background-color: #f1f1f1; /* 행 호버 배경 */
 }
+
+/* 모달 내 제목 스타일 */
+.modal h2 {
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* 그래프 캔버스 크기 조정 */
+.modal-content-graph canvas {
+    max-width: 100%;
+    height: auto;
+}
+

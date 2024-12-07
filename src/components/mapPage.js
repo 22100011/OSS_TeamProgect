@@ -1,6 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GoogleMap, LoadScript, MarkerF } from "@react-google-maps/api";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 import "./map.css";
+
+// Chart.js 등록
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
 const MapComponent = () => {
     const API_KEY = "AIzaSyAqAUnefQInM7WM_fDDIrzvmRXk6UFJbQQ";
@@ -14,9 +36,10 @@ const MapComponent = () => {
     const [filteredData, setFilteredData] = useState([]);
     const mapRef = useRef(null);
 
-    const [selectedMarker, setSelectedMarker] = useState(null); // 선택된 마커 데이터 저장
-    const [isModalOpen, setIsModalOpen] = useState(false); // 기본 모달 상태 관리
-    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false); // 상세 모달 상태 관리
+    const [selectedMarker, setSelectedMarker] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+    const [isGraphModalOpen, setIsGraphModalOpen] = useState(false);
 
     const mapOptions = {
         maxZoom: 10,
@@ -43,7 +66,7 @@ const MapComponent = () => {
     };
 
     useEffect(() => {
-        fetchData(); // 컴포넌트 로드 시 데이터 가져오기
+        fetchData();
     }, []);
 
     const closeModal = () => {
@@ -56,13 +79,28 @@ const MapComponent = () => {
     };
 
     const openDetailsModal = () => {
-        setIsModalOpen(false); // 기본 모달 닫기
-        setIsDetailsModalOpen(true); // 상세 모달 열기
+        setIsModalOpen(false);
+        setIsDetailsModalOpen(true);
     };
 
     const openHomeModal = () => {
-        setIsDetailsModalOpen(false); // 상세 모달 닫기
-        setIsModalOpen(true); // 기본 모달 열기
+        setIsDetailsModalOpen(false);
+        setIsGraphModalOpen(false);
+        setIsModalOpen(true);
+    };
+
+    const openHomeModal2 = () => {
+        setIsGraphModalOpen(false);
+        setIsModalOpen(true);
+    };
+
+    const openGraphModal = () => {
+        setIsDetailsModalOpen(false);
+        setIsGraphModalOpen(true);
+    };
+
+    const closeGraphModal = () => {
+        setIsGraphModalOpen(false);
     };
 
     return (
@@ -157,12 +195,85 @@ const MapComponent = () => {
                                 </tbody>
                             </table>
                             <button onClick={closeDetailsModal} className="modal-button">Close</button>
+                            <button onClick={openGraphModal} className="modal-button">View Graph</button>
                             <button onClick={openHomeModal} className="modal-button">Back</button>
                         </div>
                     </div>
                 )}
+
+                {isGraphModalOpen && selectedMarker && (
+                    <GraphModal
+                        selectedMarker={selectedMarker}
+                        data={data}
+                        closeGraph={closeGraphModal}
+                        openHomeModal2={openHomeModal} // 함수 전달
+                    />
+                )}
             </GoogleMap>
         </LoadScript>
+    );
+};
+
+const GraphModal = ({ selectedMarker, data, closeGraph , openHomeModal2}) => {
+    const countryData = data.filter(item => item.country === selectedMarker.country);
+
+    const chartData = {
+        labels: countryData.map(item => item.year),
+        datasets: [
+            {
+                label: "GHI",
+                data: countryData.map(item => item.ghi),
+                borderColor: "rgba(75,192,192,1)",
+                fill: false,
+            },
+            {
+                label: "Stunting (%)",
+                data: countryData.map(item => item.child_stunting),
+                borderColor: "rgba(255,99,132,1)",
+                fill: false,
+            },
+            {
+                label: "Wasting (%)",
+                data: countryData.map(item => item.child_wasting),
+                borderColor: "rgba(153,102,255,1)",
+                fill: false,
+            },
+            {
+                label: "Undernourishment (%)",
+                data: countryData.map(item => item.undernourishment),
+                borderColor: "rgba(255,206,86,1)",
+                fill: false,
+            },
+            {
+                label: "Mortality (%)",
+                data: countryData.map(item => item.child_mortality),
+                borderColor: "rgba(54,162,235,1)",
+                fill: false,
+            },
+        ],
+    };
+
+    const chartOptions = {
+        responsive: true,
+        scales: {
+            x: {
+                title: { display: true, text: "Year" },
+            },
+            y: {
+                title: { display: true, text: "Percentage / Index" },
+            },
+        },
+    };
+
+    return (
+        <div className="modal">
+            <div className="modal-content-graph">
+                <h2>{selectedMarker.country} - Yearly Data Graph</h2>
+                <Line data={chartData} options={chartOptions} />
+                <button onClick={closeGraph} className="modal-button">Close</button>
+                <button onClick={openHomeModal2} className="modal-button">Back</button>
+            </div>
+        </div>
     );
 };
 
