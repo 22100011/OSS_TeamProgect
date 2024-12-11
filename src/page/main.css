@@ -1,0 +1,52 @@
+h1 {
+    display: inline-block;
+    vertical-align: middle;
+    color: white;
+    margin: 0.5rem;
+    padding: 0;
+}
+
+nav {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header {
+    background: cadetblue;
+    padding: 20px;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+.main-content {
+    margin-top: 60px; /* 상단 고정 영역 아래에 콘텐츠 배치 */
+}
+
+button.button_4 {
+    border: 0;
+    outline: none;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin-left: 100px;
+    box-shadow: 3px 3px 3px rgb(109, 109, 109), -3px -3px 3px rgb(237, 237, 237);
+    transition: 0.3s;
+    font-weight: 600;
+    color: white;
+    background-color: cadetblue;
+}
+
+button.button_4:hover {
+    box-shadow: -3px -3px 3px rgb(172, 172, 172), 3px 3px 3px rgb(237, 237, 237);
+    transition: 0.3s;
+}

@@ -6,7 +6,7 @@ import MapPage from "../components/mapPage";
 const Add = () => {
   return (
     <div>
-      <h1>Map Page</h1>
+      <h2>Map Page</h2>
       <Link to="/main">
         <button>Main Page</button>
       </Link>

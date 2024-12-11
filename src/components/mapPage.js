@@ -28,7 +28,7 @@ const MapComponent = () => {
     const API_KEY = "AIzaSyAqAUnefQInM7WM_fDDIrzvmRXk6UFJbQQ";
 
     const initialCenter = {
-        lat: 6.6111,
+        lat: 0,
         lng: 20.9394,
     };
 
@@ -45,10 +45,10 @@ const MapComponent = () => {
         maxZoom: 10,
         restriction: {
             latLngBounds: {
-                north: 45.0,
-                south: -45.0,
-                west: -120.0,
-                east: 120.0,
+                north: 50.0,
+                south: -50.0,
+                west: -100.0,
+                east: 140.0,
             },
             strictBounds: true,
         },

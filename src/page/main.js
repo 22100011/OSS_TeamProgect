@@ -1,19 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./main.css"; // CSS 파일 import
 
 const Add = () => {
   return (
-    <div>
-      <h1>Main Page</h1>
-      <Link to="/data">
-        <button>Data Page</button>
-      </Link>
-      <Link to="/map">
-        <button>Map Page</button>
-      </Link>
-      
-    </div>
-
+    <>
+      <header>
+        <h1>Global Hunger Index Analysis System</h1>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/data">
+                <button type="button" class="button_4">Data Page</button>
+              </Link>
+            </li>
+            <li>
+              <Link to="/map">
+                <button type="button" class="button_4">Map Page</button>
+              </Link>
+              
+            </li>
+          </ul>
+        </nav>
+      </header>
+    </>
   );
 };
 

@@ -1,0 +1,66 @@
+button.button_data {
+    border: 0;
+    outline: none;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-left: 30px;
+    box-shadow: 3px 3px 3px rgb(109, 109, 109), -3px -3px 3px rgb(237, 237, 237);
+    transition: 0.3s;
+    font-weight: 600;
+    color: white;
+    background-color: cadetblue;
+}
+button.button_data:hover {
+    box-shadow: -3px -3px 3px rgb(172, 172, 172), 3px 3px 3px rgb(237, 237, 237);
+    transition: 0.3s;
+}
+.select_page1{
+    background-color: cadetblue;
+    padding: 0px 10px 10px 0px;
+    width: 100%;
+}
+
+select {
+    width: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: cadetblue;
+    color: white;
+
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+/* select 요소의 컨테이너에 화살표 추가 */
+.select-container {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+}
+
+/* 화살표를 select 박스 옆에 배치 */
+.select-container::after {
+    content: '\25BC'; /* 아래 화살표 기호 */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 14px;
+}
+
+/* select 박스가 포커스될 때 스타일 */
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 94, 94, 0.5);
+}
+
+/* 옵션 스타일 */
+option {
+    padding: 10px;
+}

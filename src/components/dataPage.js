@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./datapage.css"; // CSS 파일 import
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -45,29 +46,36 @@ const App = () => {
   return (
     <div>
 
-      <select
-        value={year}
-        onChange={(e) => setYear(e.target.value)} // 선택된 값을 업데이트
-        style={{ padding: '5px', marginRight: '10px' }}
-      >
-        <option value="">Select Year</option>
-        <option value={2023}>2023</option>
-        <option value={2019}>2019</option>
-        <option value={2015}>2015</option>
-        <option value={2011}>2011</option>
-      </select>
+      <div className='select_page1'>
+        <div style={{ display: "flex", margin:"0px 0px 0px 55%"}}>
+          <p style={{ display: "flex"}}>
+            <select
+              value={year}
+              onChange={(e) => setYear(e.target.value)} // 선택된 값을 업데이트
+              style={{ padding: '5px', marginRight: '10px' }}
+            >
+              <option value="">Select Year</option>
+              <option value={2023}>2023</option>
+              <option value={2019}>2019</option>
+              <option value={2015}>2015</option>
+              <option value={2011}>2011</option>
+            </select>
 
-      <button onClick={filterByYear} style={{ padding: '5px 10px', marginRight: '10px' }}>
-        적용
-      </button>
+            <button onClick={filterByYear} className='button_data' style={{ display: "block", margin:"0px 0px 0px 0px"}}>
+              Apply year
+            </button>
+          </p>
+          <button onClick={sortByGHIDown} className='button_data'>
+            Sort by GHI Down
+          </button>
 
-      <button onClick={sortByGHIDown} style={{ padding: '5px 10px' }}>
-        Sort by GHI Down
-      </button>
-
-      <button onClick={sortByGHIUp} style={{ padding: '5px 10px' }}>
-        Sort by GHI Up
-      </button>
+          <button onClick={sortByGHIUp} className='button_data'>
+            Sort by GHI Up
+          </button>
+        </div>
+      </div>
+      
+      
 
       <table style={{ border: "1px solid black", borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
         <thead>
