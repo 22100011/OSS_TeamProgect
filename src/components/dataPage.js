@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import './dataPage.css'; // CSS 파일 import
 
 const App = () => {
@@ -120,6 +121,12 @@ const App = () => {
         <button onClick={resetFilters} className="filter-button" style={{marginLeft:"25px"}}>
           Reset
         </button>
+
+        <Link to="/crud" className='edit-button'>
+          <button className="edit-btn">
+            Edit
+          </button>
+        </Link>
       </div>
 
       {filteredData.length === 0 ? (

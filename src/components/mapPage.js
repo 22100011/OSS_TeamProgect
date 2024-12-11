@@ -101,7 +101,7 @@ const MapComponent = () => {
     return (
         <LoadScript googleMapsApiKey={API_KEY}>
             <GoogleMap
-                mapContainerStyle={{ width: "100%", height: "500px" }}
+                mapContainerStyle={{ width: "100%", height: "90vh" }}
                 center={initialCenter}
                 zoom={3}
                 options={mapOptions}
