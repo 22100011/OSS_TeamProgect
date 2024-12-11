@@ -1,39 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import "./datapage.css"; // CSS 파일 import
+import './dataPage.css'; // CSS 파일 import
 
 const App = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [year, setYear] = useState('');
+  const [country, setCountry] = useState('');
 
   const fetchData = async () => {
     try {
       const response = await fetch('https://6743ce15b7464b1c2a65e803.mockapi.io/GHI');
       const data = await response.json();
-      setData(data); // 전체 데이터 저장
-      setFilteredData(data); // 초기 필터 데이터도 전체로 설정
+      setData(data);
+      setFilteredData(data);
     } catch (error) {
       console.error('데이터를 가져오는 중 오류 발생:', error);
     }
   };
 
-  // 특정 연도로 필터링
-  const filterByYear = () => { //year에 아무것도 적지 않았으면 그냥 다 출력해
-    let filter = [];
-    if (year === '') {
-      filter = [...data];
-    } else {
-      filter = data.filter((item) => item.year === parseInt(year));
+  // 연도와 국가를 동시에 필터링
+  const applyFilters = () => {
+    let filtered = [...data];
+
+    if (year !== '') {
+      filtered = filtered.filter((item) => item.year === parseInt(year));
     }
 
-    setFilteredData(filter);
+    if (country !== '') {
+      filtered = filtered.filter((item) => item.country === country);
+    }
+
+    setFilteredData(filtered);
   };
 
-  // GHI 값 기준으로 정렬
+  const resetFilters = () => {
+    setYear(''); // 연도 필터 초기화
+    setCountry(''); // 국가 필터 초기화
+    setFilteredData([...data]); // 전체 데이터 복원
+  }
+
+  // GHI 값 기준 정렬
   const sortByGHIDown = () => {
     const sorted = [...filteredData].sort((a, b) => parseFloat(a.ghi) - parseFloat(b.ghi));
     setFilteredData(sorted);
   };
+
   const sortByGHIUp = () => {
     const sorted = [...filteredData].sort((a, b) => parseFloat(b.ghi) - parseFloat(a.ghi));
     setFilteredData(sorted);
@@ -44,65 +55,103 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
+      <div className="filter-section">
+        <select
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          className="filter-select"
+        >
+          <option value="">View all</option>
+          <option value={2023}>2023</option>
+          <option value={2019}>2019</option>
+          <option value={2015}>2015</option>
+          <option value={2011}>2011</option>
+        </select>
 
-      <div className='select_page1'>
-        <div style={{ display: "flex", margin:"0px 0px 0px 55%"}}>
-          <p style={{ display: "flex"}}>
-            <select
-              value={year}
-              onChange={(e) => setYear(e.target.value)} // 선택된 값을 업데이트
-              style={{ padding: '5px', marginRight: '10px' }}
-            >
-              <option value="">Select Year</option>
-              <option value={2023}>2023</option>
-              <option value={2019}>2019</option>
-              <option value={2015}>2015</option>
-              <option value={2011}>2011</option>
-            </select>
-
-            <button onClick={filterByYear} className='button_data' style={{ display: "block", margin:"0px 0px 0px 0px"}}>
-              Apply year
-            </button>
-          </p>
-          <button onClick={sortByGHIDown} className='button_data'>
-            Sort by GHI Down
-          </button>
-
-          <button onClick={sortByGHIUp} className='button_data'>
-            Sort by GHI Up
-          </button>
-        </div>
-      </div>
-      
-      
-
-      <table style={{ border: "1px solid black", borderCollapse: "collapse", width: "100%", marginTop: "20px" }}>
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Country</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Year</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>GHI</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Stunting</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Wasting</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Undernourishment</th>
-            <th style={{ border: "1px solid black", padding: "8px" }}>Mortality</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item) => (
-            <tr key={item.id}>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.country}</td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.year}</td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.ghi}</td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.child_stunting}</td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.child_wasting}</td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.undernourishment}</td>
-              <td style={{ border: "1px solid black", padding: "8px" }}>{item.child_mortality}</td>
-            </tr>
+        <select
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+          className="filter-select"
+        >
+          <option value="">View all</option>
+          {[
+            'Nigeria',
+            'Kenya',
+            'South Africa',
+            'Ethiopia',
+            'Algeria',
+            'Morocco',
+            'Sudan',
+            'Tanzania',
+            'Uganda',
+            'Angola',
+            'Mozambique',
+            'Zambia',
+            'Zimbabwe',
+            'Cameroon',
+            'Senegal',
+            'Chad',
+            'Niger',
+            'Burkina Faso',
+            'Somalia',
+            'Congo',
+            'Rwanda',
+            'Botswana',
+          ].map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
           ))}
-        </tbody>
-      </table>
+        </select>
+
+        <button onClick={applyFilters} className="filter-button">
+          Apply
+        </button>
+
+        <button onClick={sortByGHIDown} className="filter-button" style={{marginLeft:"25px"}}>
+          Sort by GHI ↓
+        </button>
+
+        <button onClick={sortByGHIUp} className="filter-button">
+          Sort by GHI ↑
+        </button>
+
+        <button onClick={resetFilters} className="filter-button" style={{marginLeft:"25px"}}>
+          Reset
+        </button>
+      </div>
+
+      {filteredData.length === 0 ? (
+        <p className="no-data-message">No data available for the selected filters.</p>
+      ) : (
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>Year</th>
+              <th>GHI</th>
+              <th>Stunting</th>
+              <th>Wasting</th>
+              <th>Undernourishment</th>
+              <th>Mortality</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.country}</td>
+                <td>{item.year}</td>
+                <td>{item.ghi}</td>
+                <td>{item.child_stunting}</td>
+                <td>{item.child_wasting}</td>
+                <td>{item.undernourishment}</td>
+                <td>{item.child_mortality}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

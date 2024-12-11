@@ -5,20 +5,20 @@ import "./main.css"; // CSS 파일 import
 const Add = () => {
   return (
     <>
-      <header>
-        <h1>Global Hunger Index Analysis System</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/data">
-                <button type="button" class="button_4">Data Page</button>
-              </Link>
+      <header className="header">
+        {/* 이름을 누르면 main 페이지로 이동 */}
+        <h3 className="header-title">
+          <a href="/main" className="header-link">
+            Global Hunger Index Analysis System
+          </a>
+        </h3>
+        <nav className="header-nav">
+          <ul className="nav-list">
+            <li className="nav-item">
+              <Link to="/map" className="nav-link">Map Page</Link>
             </li>
-            <li>
-              <Link to="/map">
-                <button type="button" class="button_4">Map Page</button>
-              </Link>
-              
+            <li className="nav-item">
+              <Link to="/data" className="nav-link">Data Page</Link>
             </li>
           </ul>
         </nav>

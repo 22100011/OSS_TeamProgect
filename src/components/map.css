@@ -16,7 +16,7 @@
 .modal-content-home {
     width: 300px; /* 모달 너비 */
     max-width: 90%; /* 최대 너비 제한 */
-    background-color: #dde2d8;
+    background-color: #eefcfa;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -29,7 +29,7 @@
 .modal-content-detail {
     width: 40%; /* 상세 모달 너비 */
     max-width: 90%; /* 최대 너비 제한 */
-    background-color: #dde2d8;
+    background-color: #eefcfa;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@
 .modal-content-graph {
     width: 60%; /* 그래프 모달 너비 */
     max-width: 800px;
-    background-color: #dde2d8;
+    background-color: #eefcfa;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -51,7 +51,7 @@
 
 /* 버튼 스타일 */
 .modal-button {
-    background-color: #007bff; /* 버튼 배경색 */
+    background-color: #00aa97; /* 버튼 배경색 */
     color: #ffffff; /* 텍스트 색상 */
     border: none;
     padding: 10px 20px;
@@ -63,7 +63,7 @@
 }
 
 .modal-button:hover {
-    background-color: #0056b3; /* 버튼 호버 색상 */
+    background-color: #9ce5da; /* 버튼 호버 색상 */
 }
 
 /* 테이블 스타일 */
@@ -82,16 +82,16 @@ table td {
 }
 
 table th {
-    background-color: #f4f4f4; /* 헤더 배경 */
+    background-color: #e8f3f1; /* 헤더 배경 */
     font-weight: bold;
 }
 
 table tr:nth-child(even) {
-    background-color: #f9f9f9; /* 짝수 행 배경 */
+    background-color: #e8f3f1; /* 짝수 행 배경 */
 }
 
 table tr:hover {
-    background-color: #f1f1f1; /* 행 호버 배경 */
+    background-color: #e8f3f1; /* 행 호버 배경 */
 }
 
 /* 모달 내 제목 스타일 */
