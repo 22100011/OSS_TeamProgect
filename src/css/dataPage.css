@@ -1,0 +1,91 @@
+.container {
+    padding: 30px;
+    margin: 50px
+}
+
+.filter_section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter_select {
+    padding: 8px;
+    border: 1px solid rgb(0, 127, 114); 
+    border-radius: 4px;
+    background-color: snow;
+    color: rgb(0, 127, 114);
+    font-weight: 600;
+}
+
+.filter_button {
+    padding: 8px 12px;
+    background-color: snow;
+    color: rgb(0, 127, 114);
+    border-radius: 4px;
+    border: 1px solid rgb(0, 127, 114);
+    transition: background-color 0.2s;
+    font-weight: 600;
+}
+
+.filter_button:hover {
+    background-color: rgb(122, 182, 171);
+}
+
+.data_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data_table th,
+.data_table td {
+    border: 1.5px solid rgb(177, 175, 175); 
+    padding: 8px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.data_table th {
+    background-color: rgb(245, 237, 237);
+    text-align: center;
+    color: black;
+}
+
+.no_data_message {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+.filter_section {
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+    justify-content: space-between; /* 요소들을 양 끝으로 배치 */
+    flex-wrap: wrap; /* 화면 크기에 따라 줄바꿈 */
+}
+
+.filter_select,
+.filter_button {
+    margin: 5px; /* 버튼과 필터 박스 간 간격 */
+}
+
+.edit_button {
+    margin-left: auto; /* Edit 버튼을 오른쪽 끝으로 이동 */
+}
+
+.edit_butto{
+    padding: 8px 12px;
+    background-color: snow;
+    color: rgb(0, 127, 114);
+    font-weight: 600;
+    width: 70px;
+    border-radius: 3px;
+    border: 1px solid rgb(0, 127, 114);
+    transition: background-color 0.3s;
+}
+
+.edit_butto:hover {
+    background-color: rgb(122, 182, 171);
+} 
+

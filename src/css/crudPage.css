@@ -1,0 +1,51 @@
+.create_btn{
+  padding: 8px 12px;
+  background-color: snow;
+  color: rgb(0, 127, 114);
+  font-weight: 600;
+  width: 70px;
+  border-radius: 3px;
+  border: 1px solid rgb(0, 127, 114);
+  transition: background-color 0.3s;
+}
+
+.create_btn:hover {
+  background-color: rgb(122, 182, 171);
+} 
+
+.edit_btn {
+  background-color: blue; 
+  color: snow;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 40px;
+  transition: background-color 0.3s;
+}
+.edit_btn:hover {
+  background-color: rgb(124, 125, 235);
+} 
+
+.delete_btn {
+  background-color: red; 
+  color: snow;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.delete_btn:hover {
+  background-color: rgb(235, 124, 163);
+} 
+
+.edit_delete_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

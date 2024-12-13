@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./main.css"; // CSS 파일 import
+import MainPage from "../components/mainPage";
+import "../css/main.css";
 
 const Add = () => {
   return (
     <>
       <header className="header">
-        {/* 이름을 누르면 main 페이지로 이동 */}
         <h3 className="header-title">
           <a href="/main" className="header-link">
             Global Hunger Index Analysis System
@@ -23,6 +23,8 @@ const Add = () => {
           </ul>
         </nav>
       </header>
+      <MainPage/>
+      
     </>
   );
 };

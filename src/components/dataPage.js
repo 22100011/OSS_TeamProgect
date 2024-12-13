@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import './dataPage.css'; // CSS 파일 import
+import '../css/dataPage.css';
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -57,25 +57,26 @@ const App = () => {
 
   return (
     <div className="container">
-      <div className="filter-section">
+      <div className="filter_section">
         <select
           value={year}
           onChange={(e) => setYear(e.target.value)}
-          className="filter-select"
+          className="filter_select"
         >
-          <option value="">View all</option>
+          <option value="">Year all</option>
           <option value={2023}>2023</option>
           <option value={2019}>2019</option>
           <option value={2015}>2015</option>
           <option value={2011}>2011</option>
         </select>
+        
 
         <select
           value={country}
           onChange={(e) => setCountry(e.target.value)}
-          className="filter-select"
+          className="filter_select"
         >
-          <option value="">View all</option>
+          <option value="">Country all</option>
           {[
             'Nigeria',
             'Kenya',
@@ -106,33 +107,33 @@ const App = () => {
           ))}
         </select>
 
-        <button onClick={applyFilters} className="filter-button">
+        <button onClick={applyFilters} className="filter_button">
           Apply
         </button>
 
-        <button onClick={sortByGHIDown} className="filter-button" style={{marginLeft:"25px"}}>
+        <button onClick={sortByGHIDown} className="filter_button" style={{marginLeft:"25px"}}>
           Sort by GHI ↓
         </button>
 
-        <button onClick={sortByGHIUp} className="filter-button">
+        <button onClick={sortByGHIUp} className="filter_button">
           Sort by GHI ↑
         </button>
 
-        <button onClick={resetFilters} className="filter-button" style={{marginLeft:"25px"}}>
+        <button onClick={resetFilters} className="filter_button" style={{marginLeft:"25px"}}>
           Reset
         </button>
 
-        <Link to="/crud" className='edit-button'>
-          <button className="edit-btn">
+        <Link to="/crud" className='edit_button'>
+          <button className="edit_butto">
             Edit
           </button>
         </Link>
       </div>
 
       {filteredData.length === 0 ? (
-        <p className="no-data-message">No data available for the selected filters.</p>
+        <p className="no_data_message">No data available for the selected filters.</p>
       ) : (
-        <table className="data-table">
+        <table className="data_table">
           <thead>
             <tr>
               <th>Country</th>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ModalData from '../components/modalData';
-import "./crudPage.css"
+import "../css/crudPage.css"
 
 const App = () => {
   const [GHIData, setGHIData] = useState([]); // 전체 데이터
@@ -9,7 +9,6 @@ const App = () => {
   const [currentData, setCurrentData] = useState(null);
   const [isUpdateMode, setIsUpdateMode] = useState(false);
 
-  const [country, setCountry] = useState('');
 
   // 데이터 가져오기
   const fetchGHI = async () => {
@@ -17,7 +16,7 @@ const App = () => {
       const response = await fetch('https://6743ce15b7464b1c2a65e803.mockapi.io/GHI');
       const data = await response.json();
       setGHIData(data);
-      setFilteredData(data); // 초기에는 전체 데이터를 표시
+      setFilteredData(data);
     } catch (error) {
       console.error('데이터를 가져오는 중 오류 발생:', error);
     }
@@ -91,11 +90,11 @@ const App = () => {
   }, []);
 
   return (
-    
-    <div className="container">
-      <button onClick={() => openModal()}>추가</button>
 
-      <table className="data-table">
+    <div className="container">
+      <button className='create_btn' onClick={() => openModal()}>Create</button>
+
+      <table className="data_table">
         <thead>
           <tr>
             <th>Country</th>
@@ -105,6 +104,8 @@ const App = () => {
             <th>Wasting</th>
             <th>Undernourishment</th>
             <th>Mortality</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -118,9 +119,13 @@ const App = () => {
               <td>{item.child_wasting}</td>
               <td>{item.undernourishment}</td>
               <td>{item.child_mortality}</td>
+              <td>{item.latitude}</td>
+              <td>{item.longitude}</td>
               <td>
-                <button onClick={() => openModal(item, true)}>Edit</button>
-                <button onClick={() => deleteData(item.id)}>Delete</button>
+                <div className='edit_delete_btn'>
+                  <button className='edit_btn' onClick={() => openModal(item, true)}>Edit</button>
+                  <button className='delete_btn' onClick={() => deleteData(item.id)}>Delete</button>
+                </div>
               </td>
             </tr>
           ))}
@@ -136,7 +141,7 @@ const App = () => {
         />
       )}
     </div>
-    
+
   );
 };
 

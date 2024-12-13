@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MapPage from "../components/mapPage";
-import "./map.css";
+import "../css/map.css";
 
 
 const Add = () => {

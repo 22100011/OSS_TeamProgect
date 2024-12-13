@@ -1,0 +1,54 @@
+/* 전체 컨테이너 스타일 */
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.scoreHeade {
+  background-color: black;
+  color: white;
+  padding: 15px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.grid-item {
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.low {
+  background-color: rgb(0, 128, 0); /* 초록색 */
+}
+
+.moderate {
+  background-color: rgb(173, 216, 230); /* 연한 초록색 */
+}
+
+.serious {
+  background-color: rgb(255, 165, 0); /* 주황색 */
+}
+
+.alarming {
+  background-color: rgb(255, 99, 71); /* 오렌지-빨강 */
+}
+
+.extremely-alarming {
+  background-color: rgb(139, 0, 0); /* 진한 빨강 */
+}
+
+
+

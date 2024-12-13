@@ -11,7 +11,7 @@ import {
     Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import "./map.css";
+import "../css/mapPage.css";
 
 // Chart.js 등록
 ChartJS.register(

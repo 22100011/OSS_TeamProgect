@@ -6,7 +6,6 @@ const Add = () => {
   return (
     <>
       <header className="header">
-        {/* 이름을 누르면 main 페이지로 이동 */}
         <h3 className="header-title">
           <a href="/main" className="header-link">
             Global Hunger Index Analysis System

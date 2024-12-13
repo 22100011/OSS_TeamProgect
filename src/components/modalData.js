@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './modal.css';
+import '../css/modal.css';
 
 const ModalData = ({ isOpen, onClose, onSubmit, initialData = {}, isUpdateMode }) => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ const ModalData = ({ isOpen, onClose, onSubmit, initialData = {}, isUpdateMode }
     undernourishment: '',
     child_mortality: '',
     ghi: '',
+    latitude: '',
+    longitude: '',
   });
 
   useEffect(() => {
@@ -24,6 +26,8 @@ const ModalData = ({ isOpen, onClose, onSubmit, initialData = {}, isUpdateMode }
         undernourishment: '',
         child_mortality: '',
         ghi: '',
+        latitude: '',
+        longitude: '',
       });
     }
   }, [isUpdateMode, initialData]);
@@ -64,8 +68,8 @@ const ModalData = ({ isOpen, onClose, onSubmit, initialData = {}, isUpdateMode }
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal_overlay" onClick={onClose}>
+      <div className="modal_content" onClick={(e) => e.stopPropagation()}>
         <h2>{isUpdateMode ? 'Update Record' : 'Add Record'}</h2>
         <form onSubmit={handleSubmit}>
           <label>
@@ -141,7 +145,7 @@ const ModalData = ({ isOpen, onClose, onSubmit, initialData = {}, isUpdateMode }
               required
             />
           </label>
-          <br/>
+          <br />
 
           <label>
             GHI (calculated):
@@ -152,10 +156,35 @@ const ModalData = ({ isOpen, onClose, onSubmit, initialData = {}, isUpdateMode }
               readOnly // ghi는 값을 넣는게 아닌, 나머지 값을 통해 계산된 값이 들어감 
             />
           </label>
-          <br/>
+          <br />
 
-          <button type="submit">{isUpdateMode ? 'Update' : 'Add'}</button>
-          <button type="button" onClick={onClose}>
+          <label>
+            Latitude:
+            <input
+              name="latitude"
+              type="number"
+              value={formData.latitude}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <br />
+
+          <label>
+            Longitude
+            <input
+              name="longitude"
+              type="number"
+              value={formData.longitude}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <br />
+
+
+          <button className='modal_button' type="submit">{isUpdateMode ? 'Update' : 'Add'}</button>
+          <button className='modal_button' type="button" onClick={onClose}>
             Cancel
           </button>
         </form>
